@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+
+  <title>Rica Games Vídeos - Assista os melhores vídeos</title>
+  <meta name="description" content="Assista vídeos do Rica Games. Selecione entre vários vídeos exclusivos e únicos." />
+  <meta name="keywords" content="Rica Games, vídeo, YouTube, filmes, vídeos de jogos, entretenimento" />
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff4500;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    #video-container {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      margin-bottom: 10px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 15px #ff4500;
+    }
+
+    #video-title {
+      max-width: 800px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ffcc00;
+      text-shadow: 1px 1px 2px black;
+      min-height: 2.5em;
+    }
+
+    button {
+      background-color: #ff4500;
+      border: none;
+      padding: 12px 25px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      margin-bottom: 40px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e03e00;
+    }
+
+    #unique-string {
+      max-width: 90%;
+      background-color: #111;
+      border-radius: 8px;
+      padding: 15px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #ccc;
+      user-select: text;
+      margin-top: auto;
+    }
+
+    #propaganda-piscante {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ff4500;
+      color: white;
+      font-weight: bold;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      animation: piscar 1s infinite alternate;
+      box-shadow: 0 0 10px #ff4500;
+      z-index: 1000;
+      user-select: none;
+    }
+
+    @keyframes piscar {
+      0% {opacity: 1;}
+      100% {opacity: 0.3;}
+    }
+
+    @media (max-width: 600px) {
+      #video-container {
+        max-width: 100%;
+        aspect-ratio: auto;
+        height: 215px;
+      }
+
+      #video-title {
+        font-size: 16px;
+      }
+
+      #propaganda-piscante {
+        font-size: 14px;
+        padding: 8px 12px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Vídeos do Rica Games</h1>
+
+  <div id="video-container"></div>
+
+  <div id="video-title">Carregando título...</div>
+
+  <button onclick="trocarVideo()">Trocar Vídeo</button>
+
+  <div id="unique-string">Carregando conteúdo único...</div>
+
+  <!-- Botão com link aleatório de propaganda -->
+  <div id="propaganda-piscante">OFERTA IMPERDÍVEL!</div>
+
+  <script>
+    const videos = [
+      {id:"XNBayHI_F-U",titulo:"rica games sempre!"},
+      {id:"9CnLDMz7eAc",titulo:"RICA GAMES FALA SOBRE TIGRINHO + EXPOSED NA VARANDA + SOBRE OS DENTES + IGREJA"},
+      {id:"U0oQoSZy09E",titulo:"RICA GAMES GANHA 100 REAIS PRA COMPRAR PÓ E SE EMOCIONA AO VIVO"}
+     
+    ];
+
+    const propagandas = [
+     "https://randomico02.vercel.app/",
+     "https://randomico02.netlify.app/",
+      "https://carro.wuaze.com/conferir/",
+      "https://arquivos.wuaze.com/conferir/",
+      "https://hostinger.com.br/?REFERRALCODE=1VICTOR444",
+      "https://geocredibnkvitoria.com/",
+      "https://jogosantigos472302513.wordpress.com/",
+      "https://brasilbrasileiross.blogspot.com/",
+      "https://ocomerciobrasileironoticia.blogspot.com/2025/05/erp-profissional-para-empresas.html"
+    ];
+
+    function getRandomVideo() {
+      return videos[Math.floor(Math.random() * videos.length)];
+    }
+
+    function getRandomAdURL() {
+      return propagandas[Math.floor(Math.random() * propagandas.length)];
+    }
+
+    function trocarVideo() {
+      const video = getRandomVideo();
+      const container = document.getElementById('video-container');
+      const tituloEl = document.getElementById('video-title');
+
+      container.innerHTML = `<iframe 
+        src="https://www.youtube.com/embed/${video.id}" 
+        allowfullscreen 
+        loading="lazy" 
+        title="${video.titulo}"
+      ></iframe>`;
+
+      tituloEl.textContent = video.titulo;
+    }
+
+    function gerarStringUnica(tamanho = 300) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+      let resultado = '';
+      for(let i = 0; i < tamanho; i++) {
+        resultado += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return resultado;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      trocarVideo();
+      document.getElementById('unique-string').textContent = gerarStringUnica();
+
+      // Define URL aleatória no clique do botão de propaganda
+      const adButton = document.getElementById('propaganda-piscante');
+      const randomAdURL = getRandomAdURL();
+      adButton.addEventListener('click', () => {
+        window.open(randomAdURL, '_blank');
+      });
+    });
+  </script>
+
+</body>
+</html>
